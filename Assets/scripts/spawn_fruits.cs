@@ -15,7 +15,7 @@ public class spawn_fruits : MonoBehaviour
     [SerializeField] TextMeshProUGUI score;
     [SerializeField] Transform health;
     [SerializeField] List<Sprite> txtrs;
-    public static int selected_level=1;
+    public static int selected_level=0;
     [SerializeField] Animator canavas_anm;
     [SerializeField] GameObject close_pause_menu_button;
     bool pv_fruits_rg_iskinematic =false;

@@ -2233,13 +2233,13 @@ MonoBehaviour:
   txtrs:
   - {fileID: 21300000, guid: d950887d51260f04fb9e381951a4c6ee, type: 3}
   - {fileID: 21300000, guid: 904c1f612c17ea64aae4e0354dfe9b98, type: 3}
-  - {fileID: 21300000, guid: 4ab0d4ece3d0f7042aee16be2d7acad2, type: 3}
   - {fileID: 21300000, guid: 555eae5500b84184cb7cd9af409bf562, type: 3}
-  - {fileID: 21300000, guid: eacb019c0faceb642a6f9daa21b6e079, type: 3}
   - {fileID: 21300000, guid: ec381198073aa7b48a8d03d470f489bd, type: 3}
+  - {fileID: 21300000, guid: eacb019c0faceb642a6f9daa21b6e079, type: 3}
   - {fileID: 21300000, guid: f7b7640ae42620c40af1a9263569a92e, type: 3}
   - {fileID: 21300000, guid: e7aa204ec63e810419bccf19aa7e9721, type: 3}
   - {fileID: 21300000, guid: 320fc98d4492bf84baf3a9f581b426d8, type: 3}
+  - {fileID: 21300000, guid: 4ab0d4ece3d0f7042aee16be2d7acad2, type: 3}
   canavas_anm: {fileID: 1688140909}
   close_pause_menu_button: {fileID: 208190843}
 --- !u!1 &1848700237

@@ -6,7 +6,7 @@ public class spawn_fruits : MonoBehaviour
 {
    
     [SerializeField] Transform left, right;
-    public static Vector3 left_pos, right_pos;
+    public  Vector3 left_pos, right_pos;
     [SerializeField] GameObject fruit_prefab;
     GameObject go;
     [SerializeField] GameObject background;
@@ -14,16 +14,33 @@ public class spawn_fruits : MonoBehaviour
     int user_score=0, user_health=3;
     [SerializeField] TextMeshProUGUI score;
     [SerializeField] Transform health;
-    [SerializeField] List<Texture2D> txtrs;
-    public static int selected_level=0;
+    [SerializeField] List<Sprite> txtrs;
+    public static int selected_level=1;
+    [SerializeField] Animator canavas_anm;
+    [SerializeField] GameObject close_pause_menu_button;
+    bool pv_fruits_rg_iskinematic =false;
+    public  bool fruits_rg_iskinematic
+    {
+        get
+        {
+            return pv_fruits_rg_iskinematic;
+        }
+    }
+    public void set_spawnloop_stat(bool stat)
+    {
+    
+        pv_fruits_rg_iskinematic = stat;
+        if(!stat)
+        {
+            StartCoroutine(create_fruits());
+        }
+    }
     private void Awake()
     {
         
-        left_pos = new Vector3(0.03f, 0.05f, 2);
-        right_pos = new Vector3(0.975f, 0.05f, 2);
-        var spr = background.GetComponent<SpriteRenderer>().sprite;
-        print(Sprite.Create(txtrs[selected_level], spr.rect, spr.pivot).texture);
-        background.GetComponent<SpriteRenderer>().sprite = Sprite.Create(txtrs[selected_level], spr.rect,spr.pivot);
+        left_pos = new Vector3(0.01f, 0.05f, 2);
+        right_pos = new Vector3(1.25f, 0.05f, 2);
+        background.GetComponent<SpriteRenderer>().sprite = txtrs[selected_level];
 
     }
     void Start()
@@ -38,17 +55,20 @@ public class spawn_fruits : MonoBehaviour
         left.position = Camera.main.ViewportToWorldPoint(left_pos);
         right.position = Camera.main.ViewportToWorldPoint(right_pos);
         resize();
-
+        print("hi");
 
 
     }
+    
     IEnumerator create_fruits()
     {
         for (; ; )
         {
+            
             float time = Random.Range(0.5f, 3);
             
             yield return new WaitForSeconds(time);
+            if (pv_fruits_rg_iskinematic) { break; }
             Vector3 inst_pos = new Vector3(Random.Range(left_pos.x, right_pos.x), right.position.y, right.position.z);
              go = Instantiate(fruit_prefab, inst_pos, Quaternion.identity);
             go.GetComponent<Rigidbody>().AddForce(0, 270, 0);
@@ -92,8 +112,20 @@ public class spawn_fruits : MonoBehaviour
     }
     public void update_health()
     {
+        if (user_health == 0) { return; }
         user_health -= 1;
         Destroy(health.GetChild(0).gameObject);
+        if (user_health == 0)
+        {
+            close_pause_menu_button.SetActive(false);
+            canavas_anm.SetTrigger("change_to_pause");
+            pv_fruits_rg_iskinematic = true;
+            this.enabled = false;
+            
+           
+        }
+        
+        
     }
-
+   
 }

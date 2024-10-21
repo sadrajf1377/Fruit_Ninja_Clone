@@ -7,14 +7,21 @@ public class destory_fruits : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] GameObject torn_fruit;
     public spawn_fruits sp;
+    Rigidbody rg;
+    private void Start()
+    {
+        rg = GetComponent<Rigidbody>();
+    }
     private void Update()
     {
-        if(transform.position.y<=spawn_fruits.left_pos.y-1.5f)
+
+        if(transform.position.y<=sp.left_pos.y-1.5f)
         {
 
             sp.update_health();
             Destroy(gameObject);
         }
+        rg.isKinematic = sp.fruits_rg_iskinematic;
     }
     
     private void OnMouseEnter()
